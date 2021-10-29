@@ -1,0 +1,18 @@
+syntax = "proto3";
+package ibc.relay.ethmultisig;
+
+option go_package = "github.com/datachainlab/ibc-ethmultisig-client/modules/relay/ethmultisig";
+
+import "gogoproto/gogo.proto";
+import "google/protobuf/any.proto";
+
+message ProverConfig {
+  string diversifier = 1;
+  repeated HDWallet wallets = 2;
+  string prefix = 3;
+}
+
+message HDWallet {
+  string mnemonic = 1;
+  string hdw_path = 2;
+}

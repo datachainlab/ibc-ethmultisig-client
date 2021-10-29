@@ -1,0 +1,108 @@
+syntax = "proto3";
+
+option go_package = "github.com/datachainlab/ibc-ethmultisig-client/modules/light-clients/xx-ethmultisig/types";
+
+import "gogoproto/gogo.proto";
+
+message ClientState {
+  option (gogoproto.goproto_getters) = false;
+
+  Height latest_height = 1 [
+    (gogoproto.nullable) = false
+  ];
+  Height frozen_height = 2 [
+    (gogoproto.nullable) = false,
+    (gogoproto.moretags) = "yaml:\"frozen_height\""
+  ];
+}
+
+message ConsensusState {
+  option (gogoproto.goproto_getters) = false;
+
+  repeated bytes addresses = 1 [(gogoproto.moretags) = "yaml:\"addresses\""];
+  string diversifier = 2;
+  uint64 timestamp   = 3;
+}
+
+// Header defines a multisig consensus header
+message Header {
+  option (gogoproto.goproto_getters) = false;
+  // height to update multisig public key at
+  Height height    = 1 [
+    (gogoproto.nullable) = false
+  ];
+  uint64              timestamp       = 2;
+  MultiSignature      signature       = 3;
+  repeated bytes      new_addresses   = 4 [(gogoproto.moretags) = "yaml:\"new_addresses\""];
+  string              new_diversifier = 5 [(gogoproto.moretags) = "yaml:\"new_diversifier\""];
+}
+
+message Height {
+  // the revision that the client is currently on
+  uint64 revision_number = 1;
+  // the height within the given revision
+  uint64 revision_height = 2;
+}
+
+message MultiSignature {
+  repeated bytes signatures = 1;
+  uint64 timestamp = 2;
+}
+
+message SignBytes {
+  option (gogoproto.goproto_getters) = false;
+
+  // DataType defines the type of multisig proof being created. This is done
+  // to preserve uniqueness of different data sign byte encodings.
+  enum DataType {
+    option (gogoproto.goproto_enum_prefix) = false;
+
+    // Default State
+    DATA_TYPE_UNINITIALIZED_UNSPECIFIED = 0 [(gogoproto.enumvalue_customname) = "UNSPECIFIED"];
+    // Data type for client state verification
+    DATA_TYPE_CLIENT_STATE = 1 [(gogoproto.enumvalue_customname) = "CLIENT"];
+    // Data type for consensus state verification
+    DATA_TYPE_CONSENSUS_STATE = 2 [(gogoproto.enumvalue_customname) = "CONSENSUS"];
+    // Data type for connection state verification
+    DATA_TYPE_CONNECTION_STATE = 3 [(gogoproto.enumvalue_customname) = "CONNECTION"];
+    // Data type for channel state verification
+    DATA_TYPE_CHANNEL_STATE = 4 [(gogoproto.enumvalue_customname) = "CHANNEL"];
+    // Data type for packet commitment verification
+    DATA_TYPE_PACKET_COMMITMENT = 5 [(gogoproto.enumvalue_customname) = "PACKETCOMMITMENT"];
+    // Data type for packet acknowledgement verification
+    DATA_TYPE_PACKET_ACKNOWLEDGEMENT = 6 [(gogoproto.enumvalue_customname) = "PACKETACKNOWLEDGEMENT"];
+    // Data type for packet receipt absence verification
+    DATA_TYPE_PACKET_RECEIPT_ABSENCE = 7 [(gogoproto.enumvalue_customname) = "PACKETRECEIPTABSENCE"];
+    // Data type for next sequence recv verification
+    DATA_TYPE_NEXT_SEQUENCE_RECV = 8 [(gogoproto.enumvalue_customname) = "NEXTSEQUENCERECV"];
+    // Data type for header verification
+    DATA_TYPE_HEADER = 9 [(gogoproto.enumvalue_customname) = "HEADER"];
+  }
+
+  Height height = 1 [
+    (gogoproto.nullable) = false
+  ];
+  uint64 timestamp   = 2;
+  string diversifier = 3;
+  // type of the data used
+  DataType data_type = 4 [(gogoproto.moretags) = "yaml:\"data_type\""];
+  // marshaled HeaderData or StateData
+  bytes data = 5;
+}
+
+// HeaderData returns the SignBytes data for update verification.
+message HeaderData {
+  option (gogoproto.goproto_getters) = false;
+
+  // header public key
+  repeated bytes new_addresses = 1 [(gogoproto.moretags) = "yaml:\"new_addresses\""];
+  // header diversifier
+  string new_diversifier = 2 [(gogoproto.moretags) = "yaml:\"new_diversifier\""];
+}
+
+message StateData {
+  option (gogoproto.goproto_getters) = false;
+
+  bytes path  = 1;
+  bytes value = 2;
+}
