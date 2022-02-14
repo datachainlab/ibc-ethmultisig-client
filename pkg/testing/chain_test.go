@@ -16,9 +16,9 @@ import (
 	gethcrypto "github.com/ethereum/go-ethereum/crypto"
 	"github.com/ethereum/go-ethereum/ethclient"
 	"github.com/ethereum/go-ethereum/rpc"
+	"github.com/hyperledger-labs/yui-ibc-solidity/pkg/contract/ibchost"
 
 	"github.com/datachainlab/ibc-ethmultisig-client/modules/relay/ethmultisig/wallet"
-	"github.com/datachainlab/ibc-ethmultisig-client/pkg/contract/ibchost"
 	"github.com/datachainlab/ibc-ethmultisig-client/pkg/contract/multisigclient"
 )
 

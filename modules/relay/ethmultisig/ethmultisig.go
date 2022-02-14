@@ -14,6 +14,7 @@ import (
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
 	gethcrypto "github.com/ethereum/go-ethereum/crypto"
+	"github.com/hyperledger-labs/yui-ibc-solidity/pkg/ibc/client"
 
 	ethmultisigtypes "github.com/datachainlab/ibc-ethmultisig-client/modules/light-clients/xx-ethmultisig/types"
 )
@@ -48,11 +49,11 @@ func (m ETHMultisig) SignConsensusState(height clienttypes.Height, clientID stri
 	if err != nil {
 		return nil, nil, err
 	}
-	path, err := ethmultisigtypes.ConsensusCommitmentKey(m.prefix, clientID, dstClientConsHeight.GetRevisionHeight())
+	path, err := ethmultisigtypes.ConsensusCommitmentKey(m.prefix, clientID, dstClientConsHeight)
 	if err != nil {
 		return nil, nil, err
 	}
-	return m.SignState(ethmultisigtypes.Height(height), ethmultisigtypes.CONSENSUS, path, bz)
+	return m.SignState(height, ethmultisigtypes.CONSENSUS, path, bz)
 }
 
 func (m ETHMultisig) SignClientState(height clienttypes.Height, clientID string, clientState exported.ClientState) (*ethmultisigtypes.MultiSignature, []byte, error) {
@@ -64,7 +65,7 @@ func (m ETHMultisig) SignClientState(height clienttypes.Height, clientID string,
 	if err != nil {
 		return nil, nil, err
 	}
-	return m.SignState(ethmultisigtypes.Height(height), ethmultisigtypes.CLIENT, path, bz)
+	return m.SignState(height, ethmultisigtypes.CLIENT, path, bz)
 }
 
 func (m ETHMultisig) SignConnectionState(height clienttypes.Height, connectionID string, connection conntypes.ConnectionEnd) (*ethmultisigtypes.MultiSignature, []byte, error) {
@@ -76,7 +77,7 @@ func (m ETHMultisig) SignConnectionState(height clienttypes.Height, connectionID
 	if err != nil {
 		return nil, nil, err
 	}
-	return m.SignState(ethmultisigtypes.Height(height), ethmultisigtypes.CONNECTION, path, bz)
+	return m.SignState(height, ethmultisigtypes.CONNECTION, path, bz)
 }
 
 func (m ETHMultisig) SignChannelState(height clienttypes.Height, portID, channelID string, channel chantypes.Channel) (*ethmultisigtypes.MultiSignature, []byte, error) {
@@ -88,7 +89,7 @@ func (m ETHMultisig) SignChannelState(height clienttypes.Height, portID, channel
 	if err != nil {
 		return nil, nil, err
 	}
-	return m.SignState(ethmultisigtypes.Height(height), ethmultisigtypes.CHANNEL, path, bz)
+	return m.SignState(height, ethmultisigtypes.CHANNEL, path, bz)
 }
 
 func (m ETHMultisig) SignPacketState(height clienttypes.Height, portID, channelID string, sequence uint64, packetCommitment []byte) (*ethmultisigtypes.MultiSignature, []byte, error) {
@@ -99,7 +100,7 @@ func (m ETHMultisig) SignPacketState(height clienttypes.Height, portID, channelI
 	if err != nil {
 		return nil, nil, err
 	}
-	return m.SignState(ethmultisigtypes.Height(height), ethmultisigtypes.PACKETCOMMITMENT, path, packetCommitment)
+	return m.SignState(height, ethmultisigtypes.PACKETCOMMITMENT, path, packetCommitment)
 }
 
 func (m ETHMultisig) SignPacketAcknowledgementState(height clienttypes.Height, portID, channelID string, sequence uint64, acknowledgementCommitment []byte) (*ethmultisigtypes.MultiSignature, []byte, error) {
@@ -110,10 +111,10 @@ func (m ETHMultisig) SignPacketAcknowledgementState(height clienttypes.Height, p
 	if err != nil {
 		return nil, nil, err
 	}
-	return m.SignState(ethmultisigtypes.Height(height), ethmultisigtypes.PACKETACKNOWLEDGEMENT, path, acknowledgementCommitment)
+	return m.SignState(height, ethmultisigtypes.PACKETACKNOWLEDGEMENT, path, acknowledgementCommitment)
 }
 
-func (m ETHMultisig) SignState(height ethmultisigtypes.Height, dtp ethmultisigtypes.SignBytes_DataType, path, value []byte) (*ethmultisigtypes.MultiSignature, []byte, error) {
+func (m ETHMultisig) SignState(height clienttypes.Height, dtp ethmultisigtypes.SignBytes_DataType, path, value []byte) (*ethmultisigtypes.MultiSignature, []byte, error) {
 	data, err := m.cdc.Marshal(&ethmultisigtypes.StateData{
 		Path:  path,
 		Value: value,
@@ -123,7 +124,7 @@ func (m ETHMultisig) SignState(height ethmultisigtypes.Height, dtp ethmultisigty
 	}
 	ts := m.GetCurrentTimestamp()
 	signBytes, err := m.cdc.Marshal(&ethmultisigtypes.SignBytes{
-		Height:      height,
+		Height:      client.Height{RevisionNumber: height.RevisionNumber, RevisionHeight: height.RevisionHeight},
 		Timestamp:   ts,
 		Diversifier: m.diversifier,
 		DataType:    dtp,

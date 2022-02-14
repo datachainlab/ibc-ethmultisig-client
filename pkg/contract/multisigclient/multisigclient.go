@@ -52,7 +52,7 @@ type MultiSignatureData struct {
 }
 
 // MultisigclientABI is the input ABI used to generate the binding from.
-const MultisigclientABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"}],\"name\":\"getTimestampAtHeight\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"},{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"}],\"name\":\"getLatestHeight\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"},{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"clientStateBytes\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"headerBytes\",\"type\":\"bytes\"}],\"name\":\"checkHeaderAndUpdateState\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"newClientStateBytes\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"newConsensusStateBytes\",\"type\":\"bytes\"},{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes[]\",\"name\":\"addresses\",\"type\":\"bytes[]\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"}],\"internalType\":\"structConsensusState.Data\",\"name\":\"consensusState\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"bytes[]\",\"name\":\"signatures\",\"type\":\"bytes[]\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"}],\"internalType\":\"structMultiSignature.Data\",\"name\":\"multisig\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signBytes\",\"type\":\"bytes\"}],\"name\":\"verifySignature\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"counterpartyClientIdentifier\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"clientStateBytes\",\"type\":\"bytes\"}],\"name\":\"verifyClientState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"counterpartyClientIdentifier\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"consensusHeight\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"consensusStateBytes\",\"type\":\"bytes\"}],\"name\":\"verifyClientConsensusState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"connectionId\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"connectionBytes\",\"type\":\"bytes\"}],\"name\":\"verifyConnectionState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"portId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"channelId\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"channelBytes\",\"type\":\"bytes\"}],\"name\":\"verifyChannelState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"portId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"channelId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"sequence\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"commitmentBytes\",\"type\":\"bytes32\"}],\"name\":\"verifyPacketCommitment\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"portId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"channelId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"sequence\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"acknowledgement\",\"type\":\"bytes\"}],\"name\":\"verifyPacketAcknowledgement\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"}],\"name\":\"getClientState\",\"outputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"latest_height\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"frozen_height\",\"type\":\"tuple\"}],\"internalType\":\"structClientState.Data\",\"name\":\"clientState\",\"type\":\"tuple\"},{\"internalType\":\"bool\",\"name\":\"found\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"}],\"name\":\"getConsensusState\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes[]\",\"name\":\"addresses\",\"type\":\"bytes[]\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"}],\"internalType\":\"structConsensusState.Data\",\"name\":\"consensusState\",\"type\":\"tuple\"},{\"internalType\":\"bool\",\"name\":\"found\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"clientID\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"clientState\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makeClientStateSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"clientID\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"consensusHeight\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"consensusState\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makeConsensusStateSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"connectionID\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"connection\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makeConnectionStateSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"portID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"channelID\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"channel\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makeChannelStateSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"path\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"packetCommitment\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makePacketSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"uint64\",\"name\":\"height\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"path\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"packetAcknowledgement\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makePacketAcknowledgementSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true}]"
+const MultisigclientABI = "[{\"inputs\":[],\"stateMutability\":\"nonpayable\",\"type\":\"constructor\"},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"}],\"name\":\"getTimestampAtHeight\",\"outputs\":[{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"},{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"}],\"name\":\"getLatestHeight\",\"outputs\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"\",\"type\":\"tuple\"},{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"name\":\"checkHeaderAndUpdateState\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"\",\"type\":\"tuple\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"components\":[{\"internalType\":\"bytes[]\",\"name\":\"addresses\",\"type\":\"bytes[]\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"}],\"internalType\":\"structConsensusState.Data\",\"name\":\"consensusState\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"bytes[]\",\"name\":\"signatures\",\"type\":\"bytes[]\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"}],\"internalType\":\"structMultiSignature.Data\",\"name\":\"multisig\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"signBytes\",\"type\":\"bytes\"}],\"name\":\"verifySignature\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"counterpartyClientIdentifier\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"clientStateBytes\",\"type\":\"bytes\"}],\"name\":\"verifyClientState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"string\",\"name\":\"counterpartyClientIdentifier\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"consensusHeight\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"consensusStateBytes\",\"type\":\"bytes\"}],\"name\":\"verifyClientConsensusState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"connectionId\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"connectionBytes\",\"type\":\"bytes\"}],\"name\":\"verifyConnectionState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"portId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"channelId\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"channelBytes\",\"type\":\"bytes\"}],\"name\":\"verifyChannelState\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"portId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"channelId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"sequence\",\"type\":\"uint64\"},{\"internalType\":\"bytes32\",\"name\":\"commitmentBytes\",\"type\":\"bytes32\"}],\"name\":\"verifyPacketCommitment\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"proof\",\"type\":\"bytes\"},{\"internalType\":\"string\",\"name\":\"portId\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"channelId\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"sequence\",\"type\":\"uint64\"},{\"internalType\":\"bytes\",\"name\":\"acknowledgement\",\"type\":\"bytes\"}],\"name\":\"verifyPacketAcknowledgement\",\"outputs\":[{\"internalType\":\"bool\",\"name\":\"\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"}],\"name\":\"getClientState\",\"outputs\":[{\"components\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"latest_height\",\"type\":\"tuple\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"frozen_height\",\"type\":\"tuple\"}],\"internalType\":\"structClientState.Data\",\"name\":\"clientState\",\"type\":\"tuple\"},{\"internalType\":\"bool\",\"name\":\"found\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"internalType\":\"contractIBCHost\",\"name\":\"host\",\"type\":\"address\"},{\"internalType\":\"string\",\"name\":\"clientId\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"}],\"name\":\"getConsensusState\",\"outputs\":[{\"components\":[{\"internalType\":\"bytes[]\",\"name\":\"addresses\",\"type\":\"bytes[]\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"}],\"internalType\":\"structConsensusState.Data\",\"name\":\"consensusState\",\"type\":\"tuple\"},{\"internalType\":\"bool\",\"name\":\"found\",\"type\":\"bool\"}],\"stateMutability\":\"view\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"clientID\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"clientState\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makeClientStateSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"clientID\",\"type\":\"string\"},{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"consensusHeight\",\"type\":\"tuple\"},{\"internalType\":\"bytes\",\"name\":\"consensusState\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makeConsensusStateSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"connectionID\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"connection\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makeConnectionStateSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"portID\",\"type\":\"string\"},{\"internalType\":\"string\",\"name\":\"channelID\",\"type\":\"string\"},{\"internalType\":\"bytes\",\"name\":\"channel\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makeChannelStateSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"path\",\"type\":\"bytes32\"},{\"internalType\":\"bytes32\",\"name\":\"packetCommitment\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makePacketSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true},{\"inputs\":[{\"components\":[{\"internalType\":\"uint64\",\"name\":\"revision_number\",\"type\":\"uint64\"},{\"internalType\":\"uint64\",\"name\":\"revision_height\",\"type\":\"uint64\"}],\"internalType\":\"structHeight.Data\",\"name\":\"height\",\"type\":\"tuple\"},{\"internalType\":\"uint64\",\"name\":\"timestamp\",\"type\":\"uint64\"},{\"internalType\":\"string\",\"name\":\"diversifier\",\"type\":\"string\"},{\"internalType\":\"bytes32\",\"name\":\"path\",\"type\":\"bytes32\"},{\"internalType\":\"bytes\",\"name\":\"packetAcknowledgement\",\"type\":\"bytes\"},{\"internalType\":\"bytes\",\"name\":\"prefix\",\"type\":\"bytes\"}],\"name\":\"makePacketAcknowledgementSignBytes\",\"outputs\":[{\"internalType\":\"bytes\",\"name\":\"\",\"type\":\"bytes\"}],\"stateMutability\":\"pure\",\"type\":\"function\",\"constant\":true}]"
 
 // Multisigclient is an auto generated Go binding around an Ethereum contract.
 type Multisigclient struct {
@@ -198,52 +198,35 @@ func (_Multisigclient *MultisigclientTransactorRaw) Transact(opts *bind.Transact
 
 // CheckHeaderAndUpdateState is a free data retrieval call binding the contract method 0xfe4391fd.
 //
-// Solidity: function checkHeaderAndUpdateState(address host, string clientId, bytes clientStateBytes, bytes headerBytes) view returns(bytes newClientStateBytes, bytes newConsensusStateBytes, uint64 height)
-func (_Multisigclient *MultisigclientCaller) CheckHeaderAndUpdateState(opts *bind.CallOpts, host common.Address, clientId string, clientStateBytes []byte, headerBytes []byte) (struct {
-	NewClientStateBytes    []byte
-	NewConsensusStateBytes []byte
-	Height                 uint64
-}, error) {
+// Solidity: function checkHeaderAndUpdateState(address , string , bytes , bytes ) view returns(bytes, bytes, (uint64,uint64))
+func (_Multisigclient *MultisigclientCaller) CheckHeaderAndUpdateState(opts *bind.CallOpts, arg0 common.Address, arg1 string, arg2 []byte, arg3 []byte) ([]byte, []byte, HeightData, error) {
 	var out []interface{}
-	err := _Multisigclient.contract.Call(opts, &out, "checkHeaderAndUpdateState", host, clientId, clientStateBytes, headerBytes)
+	err := _Multisigclient.contract.Call(opts, &out, "checkHeaderAndUpdateState", arg0, arg1, arg2, arg3)
 
-	outstruct := new(struct {
-		NewClientStateBytes    []byte
-		NewConsensusStateBytes []byte
-		Height                 uint64
-	})
 	if err != nil {
-		return *outstruct, err
+		return *new([]byte), *new([]byte), *new(HeightData), err
 	}
 
-	outstruct.NewClientStateBytes = out[0].([]byte)
-	outstruct.NewConsensusStateBytes = out[1].([]byte)
-	outstruct.Height = out[2].(uint64)
+	out0 := *abi.ConvertType(out[0], new([]byte)).(*[]byte)
+	out1 := *abi.ConvertType(out[1], new([]byte)).(*[]byte)
+	out2 := *abi.ConvertType(out[2], new(HeightData)).(*HeightData)
 
-	return *outstruct, err
+	return out0, out1, out2, err
 
 }
 
 // CheckHeaderAndUpdateState is a free data retrieval call binding the contract method 0xfe4391fd.
 //
-// Solidity: function checkHeaderAndUpdateState(address host, string clientId, bytes clientStateBytes, bytes headerBytes) view returns(bytes newClientStateBytes, bytes newConsensusStateBytes, uint64 height)
-func (_Multisigclient *MultisigclientSession) CheckHeaderAndUpdateState(host common.Address, clientId string, clientStateBytes []byte, headerBytes []byte) (struct {
-	NewClientStateBytes    []byte
-	NewConsensusStateBytes []byte
-	Height                 uint64
-}, error) {
-	return _Multisigclient.Contract.CheckHeaderAndUpdateState(&_Multisigclient.CallOpts, host, clientId, clientStateBytes, headerBytes)
+// Solidity: function checkHeaderAndUpdateState(address , string , bytes , bytes ) view returns(bytes, bytes, (uint64,uint64))
+func (_Multisigclient *MultisigclientSession) CheckHeaderAndUpdateState(arg0 common.Address, arg1 string, arg2 []byte, arg3 []byte) ([]byte, []byte, HeightData, error) {
+	return _Multisigclient.Contract.CheckHeaderAndUpdateState(&_Multisigclient.CallOpts, arg0, arg1, arg2, arg3)
 }
 
 // CheckHeaderAndUpdateState is a free data retrieval call binding the contract method 0xfe4391fd.
 //
-// Solidity: function checkHeaderAndUpdateState(address host, string clientId, bytes clientStateBytes, bytes headerBytes) view returns(bytes newClientStateBytes, bytes newConsensusStateBytes, uint64 height)
-func (_Multisigclient *MultisigclientCallerSession) CheckHeaderAndUpdateState(host common.Address, clientId string, clientStateBytes []byte, headerBytes []byte) (struct {
-	NewClientStateBytes    []byte
-	NewConsensusStateBytes []byte
-	Height                 uint64
-}, error) {
-	return _Multisigclient.Contract.CheckHeaderAndUpdateState(&_Multisigclient.CallOpts, host, clientId, clientStateBytes, headerBytes)
+// Solidity: function checkHeaderAndUpdateState(address , string , bytes , bytes ) view returns(bytes, bytes, (uint64,uint64))
+func (_Multisigclient *MultisigclientCallerSession) CheckHeaderAndUpdateState(arg0 common.Address, arg1 string, arg2 []byte, arg3 []byte) ([]byte, []byte, HeightData, error) {
+	return _Multisigclient.Contract.CheckHeaderAndUpdateState(&_Multisigclient.CallOpts, arg0, arg1, arg2, arg3)
 }
 
 // GetClientState is a free data retrieval call binding the contract method 0xff33b3e6.
@@ -260,9 +243,6 @@ func (_Multisigclient *MultisigclientCaller) GetClientState(opts *bind.CallOpts,
 		ClientState ClientStateData
 		Found       bool
 	})
-	if err != nil {
-		return *outstruct, err
-	}
 
 	outstruct.ClientState = out[0].(ClientStateData)
 	outstruct.Found = out[1].(bool)
@@ -305,9 +285,6 @@ func (_Multisigclient *MultisigclientCaller) GetConsensusState(opts *bind.CallOp
 		ConsensusState ConsensusStateData
 		Found          bool
 	})
-	if err != nil {
-		return *outstruct, err
-	}
 
 	outstruct.ConsensusState = out[0].(ConsensusStateData)
 	outstruct.Found = out[1].(bool)
@@ -338,16 +315,16 @@ func (_Multisigclient *MultisigclientCallerSession) GetConsensusState(host commo
 
 // GetLatestHeight is a free data retrieval call binding the contract method 0xfe017750.
 //
-// Solidity: function getLatestHeight(address host, string clientId) view returns(uint64, bool)
-func (_Multisigclient *MultisigclientCaller) GetLatestHeight(opts *bind.CallOpts, host common.Address, clientId string) (uint64, bool, error) {
+// Solidity: function getLatestHeight(address host, string clientId) view returns((uint64,uint64), bool)
+func (_Multisigclient *MultisigclientCaller) GetLatestHeight(opts *bind.CallOpts, host common.Address, clientId string) (HeightData, bool, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "getLatestHeight", host, clientId)
 
 	if err != nil {
-		return *new(uint64), *new(bool), err
+		return *new(HeightData), *new(bool), err
 	}
 
-	out0 := *abi.ConvertType(out[0], new(uint64)).(*uint64)
+	out0 := *abi.ConvertType(out[0], new(HeightData)).(*HeightData)
 	out1 := *abi.ConvertType(out[1], new(bool)).(*bool)
 
 	return out0, out1, err
@@ -356,22 +333,22 @@ func (_Multisigclient *MultisigclientCaller) GetLatestHeight(opts *bind.CallOpts
 
 // GetLatestHeight is a free data retrieval call binding the contract method 0xfe017750.
 //
-// Solidity: function getLatestHeight(address host, string clientId) view returns(uint64, bool)
-func (_Multisigclient *MultisigclientSession) GetLatestHeight(host common.Address, clientId string) (uint64, bool, error) {
+// Solidity: function getLatestHeight(address host, string clientId) view returns((uint64,uint64), bool)
+func (_Multisigclient *MultisigclientSession) GetLatestHeight(host common.Address, clientId string) (HeightData, bool, error) {
 	return _Multisigclient.Contract.GetLatestHeight(&_Multisigclient.CallOpts, host, clientId)
 }
 
 // GetLatestHeight is a free data retrieval call binding the contract method 0xfe017750.
 //
-// Solidity: function getLatestHeight(address host, string clientId) view returns(uint64, bool)
-func (_Multisigclient *MultisigclientCallerSession) GetLatestHeight(host common.Address, clientId string) (uint64, bool, error) {
+// Solidity: function getLatestHeight(address host, string clientId) view returns((uint64,uint64), bool)
+func (_Multisigclient *MultisigclientCallerSession) GetLatestHeight(host common.Address, clientId string) (HeightData, bool, error) {
 	return _Multisigclient.Contract.GetLatestHeight(&_Multisigclient.CallOpts, host, clientId)
 }
 
-// GetTimestampAtHeight is a free data retrieval call binding the contract method 0xbd90991a.
+// GetTimestampAtHeight is a free data retrieval call binding the contract method 0xa65a0aba.
 //
-// Solidity: function getTimestampAtHeight(address host, string clientId, uint64 height) view returns(uint64, bool)
-func (_Multisigclient *MultisigclientCaller) GetTimestampAtHeight(opts *bind.CallOpts, host common.Address, clientId string, height uint64) (uint64, bool, error) {
+// Solidity: function getTimestampAtHeight(address host, string clientId, (uint64,uint64) height) view returns(uint64, bool)
+func (_Multisigclient *MultisigclientCaller) GetTimestampAtHeight(opts *bind.CallOpts, host common.Address, clientId string, height HeightData) (uint64, bool, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "getTimestampAtHeight", host, clientId, height)
 
@@ -386,24 +363,24 @@ func (_Multisigclient *MultisigclientCaller) GetTimestampAtHeight(opts *bind.Cal
 
 }
 
-// GetTimestampAtHeight is a free data retrieval call binding the contract method 0xbd90991a.
+// GetTimestampAtHeight is a free data retrieval call binding the contract method 0xa65a0aba.
 //
-// Solidity: function getTimestampAtHeight(address host, string clientId, uint64 height) view returns(uint64, bool)
-func (_Multisigclient *MultisigclientSession) GetTimestampAtHeight(host common.Address, clientId string, height uint64) (uint64, bool, error) {
+// Solidity: function getTimestampAtHeight(address host, string clientId, (uint64,uint64) height) view returns(uint64, bool)
+func (_Multisigclient *MultisigclientSession) GetTimestampAtHeight(host common.Address, clientId string, height HeightData) (uint64, bool, error) {
 	return _Multisigclient.Contract.GetTimestampAtHeight(&_Multisigclient.CallOpts, host, clientId, height)
 }
 
-// GetTimestampAtHeight is a free data retrieval call binding the contract method 0xbd90991a.
+// GetTimestampAtHeight is a free data retrieval call binding the contract method 0xa65a0aba.
 //
-// Solidity: function getTimestampAtHeight(address host, string clientId, uint64 height) view returns(uint64, bool)
-func (_Multisigclient *MultisigclientCallerSession) GetTimestampAtHeight(host common.Address, clientId string, height uint64) (uint64, bool, error) {
+// Solidity: function getTimestampAtHeight(address host, string clientId, (uint64,uint64) height) view returns(uint64, bool)
+func (_Multisigclient *MultisigclientCallerSession) GetTimestampAtHeight(host common.Address, clientId string, height HeightData) (uint64, bool, error) {
 	return _Multisigclient.Contract.GetTimestampAtHeight(&_Multisigclient.CallOpts, host, clientId, height)
 }
 
-// MakeChannelStateSignBytes is a free data retrieval call binding the contract method 0x81b4e822.
+// MakeChannelStateSignBytes is a free data retrieval call binding the contract method 0x1b380851.
 //
-// Solidity: function makeChannelStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string portID, string channelID, bytes channel, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCaller) MakeChannelStateSignBytes(opts *bind.CallOpts, height uint64, timestamp uint64, diversifier string, portID string, channelID string, channel []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeChannelStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string portID, string channelID, bytes channel, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCaller) MakeChannelStateSignBytes(opts *bind.CallOpts, height HeightData, timestamp uint64, diversifier string, portID string, channelID string, channel []byte, prefix []byte) ([]byte, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "makeChannelStateSignBytes", height, timestamp, diversifier, portID, channelID, channel, prefix)
 
@@ -417,24 +394,24 @@ func (_Multisigclient *MultisigclientCaller) MakeChannelStateSignBytes(opts *bin
 
 }
 
-// MakeChannelStateSignBytes is a free data retrieval call binding the contract method 0x81b4e822.
+// MakeChannelStateSignBytes is a free data retrieval call binding the contract method 0x1b380851.
 //
-// Solidity: function makeChannelStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string portID, string channelID, bytes channel, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientSession) MakeChannelStateSignBytes(height uint64, timestamp uint64, diversifier string, portID string, channelID string, channel []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeChannelStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string portID, string channelID, bytes channel, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientSession) MakeChannelStateSignBytes(height HeightData, timestamp uint64, diversifier string, portID string, channelID string, channel []byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakeChannelStateSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, portID, channelID, channel, prefix)
 }
 
-// MakeChannelStateSignBytes is a free data retrieval call binding the contract method 0x81b4e822.
+// MakeChannelStateSignBytes is a free data retrieval call binding the contract method 0x1b380851.
 //
-// Solidity: function makeChannelStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string portID, string channelID, bytes channel, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCallerSession) MakeChannelStateSignBytes(height uint64, timestamp uint64, diversifier string, portID string, channelID string, channel []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeChannelStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string portID, string channelID, bytes channel, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCallerSession) MakeChannelStateSignBytes(height HeightData, timestamp uint64, diversifier string, portID string, channelID string, channel []byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakeChannelStateSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, portID, channelID, channel, prefix)
 }
 
-// MakeClientStateSignBytes is a free data retrieval call binding the contract method 0x464cb82f.
+// MakeClientStateSignBytes is a free data retrieval call binding the contract method 0xb000a41d.
 //
-// Solidity: function makeClientStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string clientID, bytes clientState, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCaller) MakeClientStateSignBytes(opts *bind.CallOpts, height uint64, timestamp uint64, diversifier string, clientID string, clientState []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeClientStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string clientID, bytes clientState, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCaller) MakeClientStateSignBytes(opts *bind.CallOpts, height HeightData, timestamp uint64, diversifier string, clientID string, clientState []byte, prefix []byte) ([]byte, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "makeClientStateSignBytes", height, timestamp, diversifier, clientID, clientState, prefix)
 
@@ -448,24 +425,24 @@ func (_Multisigclient *MultisigclientCaller) MakeClientStateSignBytes(opts *bind
 
 }
 
-// MakeClientStateSignBytes is a free data retrieval call binding the contract method 0x464cb82f.
+// MakeClientStateSignBytes is a free data retrieval call binding the contract method 0xb000a41d.
 //
-// Solidity: function makeClientStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string clientID, bytes clientState, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientSession) MakeClientStateSignBytes(height uint64, timestamp uint64, diversifier string, clientID string, clientState []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeClientStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string clientID, bytes clientState, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientSession) MakeClientStateSignBytes(height HeightData, timestamp uint64, diversifier string, clientID string, clientState []byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakeClientStateSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, clientID, clientState, prefix)
 }
 
-// MakeClientStateSignBytes is a free data retrieval call binding the contract method 0x464cb82f.
+// MakeClientStateSignBytes is a free data retrieval call binding the contract method 0xb000a41d.
 //
-// Solidity: function makeClientStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string clientID, bytes clientState, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCallerSession) MakeClientStateSignBytes(height uint64, timestamp uint64, diversifier string, clientID string, clientState []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeClientStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string clientID, bytes clientState, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCallerSession) MakeClientStateSignBytes(height HeightData, timestamp uint64, diversifier string, clientID string, clientState []byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakeClientStateSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, clientID, clientState, prefix)
 }
 
-// MakeConnectionStateSignBytes is a free data retrieval call binding the contract method 0x4438375e.
+// MakeConnectionStateSignBytes is a free data retrieval call binding the contract method 0x291d7cc7.
 //
-// Solidity: function makeConnectionStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string connectionID, bytes connection, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCaller) MakeConnectionStateSignBytes(opts *bind.CallOpts, height uint64, timestamp uint64, diversifier string, connectionID string, connection []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeConnectionStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string connectionID, bytes connection, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCaller) MakeConnectionStateSignBytes(opts *bind.CallOpts, height HeightData, timestamp uint64, diversifier string, connectionID string, connection []byte, prefix []byte) ([]byte, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "makeConnectionStateSignBytes", height, timestamp, diversifier, connectionID, connection, prefix)
 
@@ -479,24 +456,24 @@ func (_Multisigclient *MultisigclientCaller) MakeConnectionStateSignBytes(opts *
 
 }
 
-// MakeConnectionStateSignBytes is a free data retrieval call binding the contract method 0x4438375e.
+// MakeConnectionStateSignBytes is a free data retrieval call binding the contract method 0x291d7cc7.
 //
-// Solidity: function makeConnectionStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string connectionID, bytes connection, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientSession) MakeConnectionStateSignBytes(height uint64, timestamp uint64, diversifier string, connectionID string, connection []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeConnectionStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string connectionID, bytes connection, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientSession) MakeConnectionStateSignBytes(height HeightData, timestamp uint64, diversifier string, connectionID string, connection []byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakeConnectionStateSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, connectionID, connection, prefix)
 }
 
-// MakeConnectionStateSignBytes is a free data retrieval call binding the contract method 0x4438375e.
+// MakeConnectionStateSignBytes is a free data retrieval call binding the contract method 0x291d7cc7.
 //
-// Solidity: function makeConnectionStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string connectionID, bytes connection, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCallerSession) MakeConnectionStateSignBytes(height uint64, timestamp uint64, diversifier string, connectionID string, connection []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeConnectionStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string connectionID, bytes connection, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCallerSession) MakeConnectionStateSignBytes(height HeightData, timestamp uint64, diversifier string, connectionID string, connection []byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakeConnectionStateSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, connectionID, connection, prefix)
 }
 
-// MakeConsensusStateSignBytes is a free data retrieval call binding the contract method 0x4125d9e9.
+// MakeConsensusStateSignBytes is a free data retrieval call binding the contract method 0x8c5d60b4.
 //
-// Solidity: function makeConsensusStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string clientID, uint64 consensusHeight, bytes consensusState, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCaller) MakeConsensusStateSignBytes(opts *bind.CallOpts, height uint64, timestamp uint64, diversifier string, clientID string, consensusHeight uint64, consensusState []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeConsensusStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string clientID, (uint64,uint64) consensusHeight, bytes consensusState, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCaller) MakeConsensusStateSignBytes(opts *bind.CallOpts, height HeightData, timestamp uint64, diversifier string, clientID string, consensusHeight HeightData, consensusState []byte, prefix []byte) ([]byte, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "makeConsensusStateSignBytes", height, timestamp, diversifier, clientID, consensusHeight, consensusState, prefix)
 
@@ -510,24 +487,24 @@ func (_Multisigclient *MultisigclientCaller) MakeConsensusStateSignBytes(opts *b
 
 }
 
-// MakeConsensusStateSignBytes is a free data retrieval call binding the contract method 0x4125d9e9.
+// MakeConsensusStateSignBytes is a free data retrieval call binding the contract method 0x8c5d60b4.
 //
-// Solidity: function makeConsensusStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string clientID, uint64 consensusHeight, bytes consensusState, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientSession) MakeConsensusStateSignBytes(height uint64, timestamp uint64, diversifier string, clientID string, consensusHeight uint64, consensusState []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeConsensusStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string clientID, (uint64,uint64) consensusHeight, bytes consensusState, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientSession) MakeConsensusStateSignBytes(height HeightData, timestamp uint64, diversifier string, clientID string, consensusHeight HeightData, consensusState []byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakeConsensusStateSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, clientID, consensusHeight, consensusState, prefix)
 }
 
-// MakeConsensusStateSignBytes is a free data retrieval call binding the contract method 0x4125d9e9.
+// MakeConsensusStateSignBytes is a free data retrieval call binding the contract method 0x8c5d60b4.
 //
-// Solidity: function makeConsensusStateSignBytes(uint64 height, uint64 timestamp, string diversifier, string clientID, uint64 consensusHeight, bytes consensusState, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCallerSession) MakeConsensusStateSignBytes(height uint64, timestamp uint64, diversifier string, clientID string, consensusHeight uint64, consensusState []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makeConsensusStateSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, string clientID, (uint64,uint64) consensusHeight, bytes consensusState, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCallerSession) MakeConsensusStateSignBytes(height HeightData, timestamp uint64, diversifier string, clientID string, consensusHeight HeightData, consensusState []byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakeConsensusStateSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, clientID, consensusHeight, consensusState, prefix)
 }
 
-// MakePacketAcknowledgementSignBytes is a free data retrieval call binding the contract method 0x0b94538d.
+// MakePacketAcknowledgementSignBytes is a free data retrieval call binding the contract method 0x9e4d202b.
 //
-// Solidity: function makePacketAcknowledgementSignBytes(uint64 height, uint64 timestamp, string diversifier, bytes32 path, bytes packetAcknowledgement, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCaller) MakePacketAcknowledgementSignBytes(opts *bind.CallOpts, height uint64, timestamp uint64, diversifier string, path [32]byte, packetAcknowledgement []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makePacketAcknowledgementSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, bytes32 path, bytes packetAcknowledgement, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCaller) MakePacketAcknowledgementSignBytes(opts *bind.CallOpts, height HeightData, timestamp uint64, diversifier string, path [32]byte, packetAcknowledgement []byte, prefix []byte) ([]byte, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "makePacketAcknowledgementSignBytes", height, timestamp, diversifier, path, packetAcknowledgement, prefix)
 
@@ -541,24 +518,24 @@ func (_Multisigclient *MultisigclientCaller) MakePacketAcknowledgementSignBytes(
 
 }
 
-// MakePacketAcknowledgementSignBytes is a free data retrieval call binding the contract method 0x0b94538d.
+// MakePacketAcknowledgementSignBytes is a free data retrieval call binding the contract method 0x9e4d202b.
 //
-// Solidity: function makePacketAcknowledgementSignBytes(uint64 height, uint64 timestamp, string diversifier, bytes32 path, bytes packetAcknowledgement, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientSession) MakePacketAcknowledgementSignBytes(height uint64, timestamp uint64, diversifier string, path [32]byte, packetAcknowledgement []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makePacketAcknowledgementSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, bytes32 path, bytes packetAcknowledgement, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientSession) MakePacketAcknowledgementSignBytes(height HeightData, timestamp uint64, diversifier string, path [32]byte, packetAcknowledgement []byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakePacketAcknowledgementSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, path, packetAcknowledgement, prefix)
 }
 
-// MakePacketAcknowledgementSignBytes is a free data retrieval call binding the contract method 0x0b94538d.
+// MakePacketAcknowledgementSignBytes is a free data retrieval call binding the contract method 0x9e4d202b.
 //
-// Solidity: function makePacketAcknowledgementSignBytes(uint64 height, uint64 timestamp, string diversifier, bytes32 path, bytes packetAcknowledgement, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCallerSession) MakePacketAcknowledgementSignBytes(height uint64, timestamp uint64, diversifier string, path [32]byte, packetAcknowledgement []byte, prefix []byte) ([]byte, error) {
+// Solidity: function makePacketAcknowledgementSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, bytes32 path, bytes packetAcknowledgement, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCallerSession) MakePacketAcknowledgementSignBytes(height HeightData, timestamp uint64, diversifier string, path [32]byte, packetAcknowledgement []byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakePacketAcknowledgementSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, path, packetAcknowledgement, prefix)
 }
 
-// MakePacketSignBytes is a free data retrieval call binding the contract method 0xfc1b3803.
+// MakePacketSignBytes is a free data retrieval call binding the contract method 0xba32f992.
 //
-// Solidity: function makePacketSignBytes(uint64 height, uint64 timestamp, string diversifier, bytes32 path, bytes32 packetCommitment, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCaller) MakePacketSignBytes(opts *bind.CallOpts, height uint64, timestamp uint64, diversifier string, path [32]byte, packetCommitment [32]byte, prefix []byte) ([]byte, error) {
+// Solidity: function makePacketSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, bytes32 path, bytes32 packetCommitment, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCaller) MakePacketSignBytes(opts *bind.CallOpts, height HeightData, timestamp uint64, diversifier string, path [32]byte, packetCommitment [32]byte, prefix []byte) ([]byte, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "makePacketSignBytes", height, timestamp, diversifier, path, packetCommitment, prefix)
 
@@ -572,24 +549,24 @@ func (_Multisigclient *MultisigclientCaller) MakePacketSignBytes(opts *bind.Call
 
 }
 
-// MakePacketSignBytes is a free data retrieval call binding the contract method 0xfc1b3803.
+// MakePacketSignBytes is a free data retrieval call binding the contract method 0xba32f992.
 //
-// Solidity: function makePacketSignBytes(uint64 height, uint64 timestamp, string diversifier, bytes32 path, bytes32 packetCommitment, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientSession) MakePacketSignBytes(height uint64, timestamp uint64, diversifier string, path [32]byte, packetCommitment [32]byte, prefix []byte) ([]byte, error) {
+// Solidity: function makePacketSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, bytes32 path, bytes32 packetCommitment, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientSession) MakePacketSignBytes(height HeightData, timestamp uint64, diversifier string, path [32]byte, packetCommitment [32]byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakePacketSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, path, packetCommitment, prefix)
 }
 
-// MakePacketSignBytes is a free data retrieval call binding the contract method 0xfc1b3803.
+// MakePacketSignBytes is a free data retrieval call binding the contract method 0xba32f992.
 //
-// Solidity: function makePacketSignBytes(uint64 height, uint64 timestamp, string diversifier, bytes32 path, bytes32 packetCommitment, bytes prefix) pure returns(bytes)
-func (_Multisigclient *MultisigclientCallerSession) MakePacketSignBytes(height uint64, timestamp uint64, diversifier string, path [32]byte, packetCommitment [32]byte, prefix []byte) ([]byte, error) {
+// Solidity: function makePacketSignBytes((uint64,uint64) height, uint64 timestamp, string diversifier, bytes32 path, bytes32 packetCommitment, bytes prefix) pure returns(bytes)
+func (_Multisigclient *MultisigclientCallerSession) MakePacketSignBytes(height HeightData, timestamp uint64, diversifier string, path [32]byte, packetCommitment [32]byte, prefix []byte) ([]byte, error) {
 	return _Multisigclient.Contract.MakePacketSignBytes(&_Multisigclient.CallOpts, height, timestamp, diversifier, path, packetCommitment, prefix)
 }
 
-// VerifyChannelState is a free data retrieval call binding the contract method 0x6455eb57.
+// VerifyChannelState is a free data retrieval call binding the contract method 0xc9f13d26.
 //
-// Solidity: function verifyChannelState(address host, string clientId, uint64 height, bytes prefix, bytes proof, string portId, string channelId, bytes channelBytes) view returns(bool)
-func (_Multisigclient *MultisigclientCaller) VerifyChannelState(opts *bind.CallOpts, host common.Address, clientId string, height uint64, prefix []byte, proof []byte, portId string, channelId string, channelBytes []byte) (bool, error) {
+// Solidity: function verifyChannelState(address host, string clientId, (uint64,uint64) height, bytes prefix, bytes proof, string portId, string channelId, bytes channelBytes) view returns(bool)
+func (_Multisigclient *MultisigclientCaller) VerifyChannelState(opts *bind.CallOpts, host common.Address, clientId string, height HeightData, prefix []byte, proof []byte, portId string, channelId string, channelBytes []byte) (bool, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "verifyChannelState", host, clientId, height, prefix, proof, portId, channelId, channelBytes)
 
@@ -603,24 +580,24 @@ func (_Multisigclient *MultisigclientCaller) VerifyChannelState(opts *bind.CallO
 
 }
 
-// VerifyChannelState is a free data retrieval call binding the contract method 0x6455eb57.
+// VerifyChannelState is a free data retrieval call binding the contract method 0xc9f13d26.
 //
-// Solidity: function verifyChannelState(address host, string clientId, uint64 height, bytes prefix, bytes proof, string portId, string channelId, bytes channelBytes) view returns(bool)
-func (_Multisigclient *MultisigclientSession) VerifyChannelState(host common.Address, clientId string, height uint64, prefix []byte, proof []byte, portId string, channelId string, channelBytes []byte) (bool, error) {
+// Solidity: function verifyChannelState(address host, string clientId, (uint64,uint64) height, bytes prefix, bytes proof, string portId, string channelId, bytes channelBytes) view returns(bool)
+func (_Multisigclient *MultisigclientSession) VerifyChannelState(host common.Address, clientId string, height HeightData, prefix []byte, proof []byte, portId string, channelId string, channelBytes []byte) (bool, error) {
 	return _Multisigclient.Contract.VerifyChannelState(&_Multisigclient.CallOpts, host, clientId, height, prefix, proof, portId, channelId, channelBytes)
 }
 
-// VerifyChannelState is a free data retrieval call binding the contract method 0x6455eb57.
+// VerifyChannelState is a free data retrieval call binding the contract method 0xc9f13d26.
 //
-// Solidity: function verifyChannelState(address host, string clientId, uint64 height, bytes prefix, bytes proof, string portId, string channelId, bytes channelBytes) view returns(bool)
-func (_Multisigclient *MultisigclientCallerSession) VerifyChannelState(host common.Address, clientId string, height uint64, prefix []byte, proof []byte, portId string, channelId string, channelBytes []byte) (bool, error) {
+// Solidity: function verifyChannelState(address host, string clientId, (uint64,uint64) height, bytes prefix, bytes proof, string portId, string channelId, bytes channelBytes) view returns(bool)
+func (_Multisigclient *MultisigclientCallerSession) VerifyChannelState(host common.Address, clientId string, height HeightData, prefix []byte, proof []byte, portId string, channelId string, channelBytes []byte) (bool, error) {
 	return _Multisigclient.Contract.VerifyChannelState(&_Multisigclient.CallOpts, host, clientId, height, prefix, proof, portId, channelId, channelBytes)
 }
 
-// VerifyClientConsensusState is a free data retrieval call binding the contract method 0xeb4561fb.
+// VerifyClientConsensusState is a free data retrieval call binding the contract method 0x8eaa4a38.
 //
-// Solidity: function verifyClientConsensusState(address host, string clientId, uint64 height, string counterpartyClientIdentifier, uint64 consensusHeight, bytes prefix, bytes proof, bytes consensusStateBytes) view returns(bool)
-func (_Multisigclient *MultisigclientCaller) VerifyClientConsensusState(opts *bind.CallOpts, host common.Address, clientId string, height uint64, counterpartyClientIdentifier string, consensusHeight uint64, prefix []byte, proof []byte, consensusStateBytes []byte) (bool, error) {
+// Solidity: function verifyClientConsensusState(address host, string clientId, (uint64,uint64) height, string counterpartyClientIdentifier, (uint64,uint64) consensusHeight, bytes prefix, bytes proof, bytes consensusStateBytes) view returns(bool)
+func (_Multisigclient *MultisigclientCaller) VerifyClientConsensusState(opts *bind.CallOpts, host common.Address, clientId string, height HeightData, counterpartyClientIdentifier string, consensusHeight HeightData, prefix []byte, proof []byte, consensusStateBytes []byte) (bool, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "verifyClientConsensusState", host, clientId, height, counterpartyClientIdentifier, consensusHeight, prefix, proof, consensusStateBytes)
 
@@ -634,24 +611,24 @@ func (_Multisigclient *MultisigclientCaller) VerifyClientConsensusState(opts *bi
 
 }
 
-// VerifyClientConsensusState is a free data retrieval call binding the contract method 0xeb4561fb.
+// VerifyClientConsensusState is a free data retrieval call binding the contract method 0x8eaa4a38.
 //
-// Solidity: function verifyClientConsensusState(address host, string clientId, uint64 height, string counterpartyClientIdentifier, uint64 consensusHeight, bytes prefix, bytes proof, bytes consensusStateBytes) view returns(bool)
-func (_Multisigclient *MultisigclientSession) VerifyClientConsensusState(host common.Address, clientId string, height uint64, counterpartyClientIdentifier string, consensusHeight uint64, prefix []byte, proof []byte, consensusStateBytes []byte) (bool, error) {
+// Solidity: function verifyClientConsensusState(address host, string clientId, (uint64,uint64) height, string counterpartyClientIdentifier, (uint64,uint64) consensusHeight, bytes prefix, bytes proof, bytes consensusStateBytes) view returns(bool)
+func (_Multisigclient *MultisigclientSession) VerifyClientConsensusState(host common.Address, clientId string, height HeightData, counterpartyClientIdentifier string, consensusHeight HeightData, prefix []byte, proof []byte, consensusStateBytes []byte) (bool, error) {
 	return _Multisigclient.Contract.VerifyClientConsensusState(&_Multisigclient.CallOpts, host, clientId, height, counterpartyClientIdentifier, consensusHeight, prefix, proof, consensusStateBytes)
 }
 
-// VerifyClientConsensusState is a free data retrieval call binding the contract method 0xeb4561fb.
+// VerifyClientConsensusState is a free data retrieval call binding the contract method 0x8eaa4a38.
 //
-// Solidity: function verifyClientConsensusState(address host, string clientId, uint64 height, string counterpartyClientIdentifier, uint64 consensusHeight, bytes prefix, bytes proof, bytes consensusStateBytes) view returns(bool)
-func (_Multisigclient *MultisigclientCallerSession) VerifyClientConsensusState(host common.Address, clientId string, height uint64, counterpartyClientIdentifier string, consensusHeight uint64, prefix []byte, proof []byte, consensusStateBytes []byte) (bool, error) {
+// Solidity: function verifyClientConsensusState(address host, string clientId, (uint64,uint64) height, string counterpartyClientIdentifier, (uint64,uint64) consensusHeight, bytes prefix, bytes proof, bytes consensusStateBytes) view returns(bool)
+func (_Multisigclient *MultisigclientCallerSession) VerifyClientConsensusState(host common.Address, clientId string, height HeightData, counterpartyClientIdentifier string, consensusHeight HeightData, prefix []byte, proof []byte, consensusStateBytes []byte) (bool, error) {
 	return _Multisigclient.Contract.VerifyClientConsensusState(&_Multisigclient.CallOpts, host, clientId, height, counterpartyClientIdentifier, consensusHeight, prefix, proof, consensusStateBytes)
 }
 
-// VerifyClientState is a free data retrieval call binding the contract method 0xf30fef52.
+// VerifyClientState is a free data retrieval call binding the contract method 0x9e6671bd.
 //
-// Solidity: function verifyClientState(address host, string clientId, uint64 height, bytes prefix, string counterpartyClientIdentifier, bytes proof, bytes clientStateBytes) view returns(bool)
-func (_Multisigclient *MultisigclientCaller) VerifyClientState(opts *bind.CallOpts, host common.Address, clientId string, height uint64, prefix []byte, counterpartyClientIdentifier string, proof []byte, clientStateBytes []byte) (bool, error) {
+// Solidity: function verifyClientState(address host, string clientId, (uint64,uint64) height, bytes prefix, string counterpartyClientIdentifier, bytes proof, bytes clientStateBytes) view returns(bool)
+func (_Multisigclient *MultisigclientCaller) VerifyClientState(opts *bind.CallOpts, host common.Address, clientId string, height HeightData, prefix []byte, counterpartyClientIdentifier string, proof []byte, clientStateBytes []byte) (bool, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "verifyClientState", host, clientId, height, prefix, counterpartyClientIdentifier, proof, clientStateBytes)
 
@@ -665,24 +642,24 @@ func (_Multisigclient *MultisigclientCaller) VerifyClientState(opts *bind.CallOp
 
 }
 
-// VerifyClientState is a free data retrieval call binding the contract method 0xf30fef52.
+// VerifyClientState is a free data retrieval call binding the contract method 0x9e6671bd.
 //
-// Solidity: function verifyClientState(address host, string clientId, uint64 height, bytes prefix, string counterpartyClientIdentifier, bytes proof, bytes clientStateBytes) view returns(bool)
-func (_Multisigclient *MultisigclientSession) VerifyClientState(host common.Address, clientId string, height uint64, prefix []byte, counterpartyClientIdentifier string, proof []byte, clientStateBytes []byte) (bool, error) {
+// Solidity: function verifyClientState(address host, string clientId, (uint64,uint64) height, bytes prefix, string counterpartyClientIdentifier, bytes proof, bytes clientStateBytes) view returns(bool)
+func (_Multisigclient *MultisigclientSession) VerifyClientState(host common.Address, clientId string, height HeightData, prefix []byte, counterpartyClientIdentifier string, proof []byte, clientStateBytes []byte) (bool, error) {
 	return _Multisigclient.Contract.VerifyClientState(&_Multisigclient.CallOpts, host, clientId, height, prefix, counterpartyClientIdentifier, proof, clientStateBytes)
 }
 
-// VerifyClientState is a free data retrieval call binding the contract method 0xf30fef52.
+// VerifyClientState is a free data retrieval call binding the contract method 0x9e6671bd.
 //
-// Solidity: function verifyClientState(address host, string clientId, uint64 height, bytes prefix, string counterpartyClientIdentifier, bytes proof, bytes clientStateBytes) view returns(bool)
-func (_Multisigclient *MultisigclientCallerSession) VerifyClientState(host common.Address, clientId string, height uint64, prefix []byte, counterpartyClientIdentifier string, proof []byte, clientStateBytes []byte) (bool, error) {
+// Solidity: function verifyClientState(address host, string clientId, (uint64,uint64) height, bytes prefix, string counterpartyClientIdentifier, bytes proof, bytes clientStateBytes) view returns(bool)
+func (_Multisigclient *MultisigclientCallerSession) VerifyClientState(host common.Address, clientId string, height HeightData, prefix []byte, counterpartyClientIdentifier string, proof []byte, clientStateBytes []byte) (bool, error) {
 	return _Multisigclient.Contract.VerifyClientState(&_Multisigclient.CallOpts, host, clientId, height, prefix, counterpartyClientIdentifier, proof, clientStateBytes)
 }
 
-// VerifyConnectionState is a free data retrieval call binding the contract method 0xd112d0b5.
+// VerifyConnectionState is a free data retrieval call binding the contract method 0xa8432fa1.
 //
-// Solidity: function verifyConnectionState(address host, string clientId, uint64 height, bytes prefix, bytes proof, string connectionId, bytes connectionBytes) view returns(bool)
-func (_Multisigclient *MultisigclientCaller) VerifyConnectionState(opts *bind.CallOpts, host common.Address, clientId string, height uint64, prefix []byte, proof []byte, connectionId string, connectionBytes []byte) (bool, error) {
+// Solidity: function verifyConnectionState(address host, string clientId, (uint64,uint64) height, bytes prefix, bytes proof, string connectionId, bytes connectionBytes) view returns(bool)
+func (_Multisigclient *MultisigclientCaller) VerifyConnectionState(opts *bind.CallOpts, host common.Address, clientId string, height HeightData, prefix []byte, proof []byte, connectionId string, connectionBytes []byte) (bool, error) {
 	var out []interface{}
 	err := _Multisigclient.contract.Call(opts, &out, "verifyConnectionState", host, clientId, height, prefix, proof, connectionId, connectionBytes)
 
@@ -696,26 +673,26 @@ func (_Multisigclient *MultisigclientCaller) VerifyConnectionState(opts *bind.Ca
 
 }
 
-// VerifyConnectionState is a free data retrieval call binding the contract method 0xd112d0b5.
+// VerifyConnectionState is a free data retrieval call binding the contract method 0xa8432fa1.
 //
-// Solidity: function verifyConnectionState(address host, string clientId, uint64 height, bytes prefix, bytes proof, string connectionId, bytes connectionBytes) view returns(bool)
-func (_Multisigclient *MultisigclientSession) VerifyConnectionState(host common.Address, clientId string, height uint64, prefix []byte, proof []byte, connectionId string, connectionBytes []byte) (bool, error) {
+// Solidity: function verifyConnectionState(address host, string clientId, (uint64,uint64) height, bytes prefix, bytes proof, string connectionId, bytes connectionBytes) view returns(bool)
+func (_Multisigclient *MultisigclientSession) VerifyConnectionState(host common.Address, clientId string, height HeightData, prefix []byte, proof []byte, connectionId string, connectionBytes []byte) (bool, error) {
 	return _Multisigclient.Contract.VerifyConnectionState(&_Multisigclient.CallOpts, host, clientId, height, prefix, proof, connectionId, connectionBytes)
 }
 
-// VerifyConnectionState is a free data retrieval call binding the contract method 0xd112d0b5.
+// VerifyConnectionState is a free data retrieval call binding the contract method 0xa8432fa1.
 //
-// Solidity: function verifyConnectionState(address host, string clientId, uint64 height, bytes prefix, bytes proof, string connectionId, bytes connectionBytes) view returns(bool)
-func (_Multisigclient *MultisigclientCallerSession) VerifyConnectionState(host common.Address, clientId string, height uint64, prefix []byte, proof []byte, connectionId string, connectionBytes []byte) (bool, error) {
+// Solidity: function verifyConnectionState(address host, string clientId, (uint64,uint64) height, bytes prefix, bytes proof, string connectionId, bytes connectionBytes) view returns(bool)
+func (_Multisigclient *MultisigclientCallerSession) VerifyConnectionState(host common.Address, clientId string, height HeightData, prefix []byte, proof []byte, connectionId string, connectionBytes []byte) (bool, error) {
 	return _Multisigclient.Contract.VerifyConnectionState(&_Multisigclient.CallOpts, host, clientId, height, prefix, proof, connectionId, connectionBytes)
 }
 
-// VerifyPacketAcknowledgement is a free data retrieval call binding the contract method 0x63c0d662.
+// VerifyPacketAcknowledgement is a free data retrieval call binding the contract method 0x54596a36.
 //
-// Solidity: function verifyPacketAcknowledgement(address host, string clientId, uint64 height, bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes acknowledgement) view returns(bool)
-func (_Multisigclient *MultisigclientCaller) VerifyPacketAcknowledgement(opts *bind.CallOpts, host common.Address, clientId string, height uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, acknowledgement []byte) (bool, error) {
+// Solidity: function verifyPacketAcknowledgement(address host, string clientId, (uint64,uint64) height, uint64 , uint64 , bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes acknowledgement) view returns(bool)
+func (_Multisigclient *MultisigclientCaller) VerifyPacketAcknowledgement(opts *bind.CallOpts, host common.Address, clientId string, height HeightData, arg3 uint64, arg4 uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, acknowledgement []byte) (bool, error) {
 	var out []interface{}
-	err := _Multisigclient.contract.Call(opts, &out, "verifyPacketAcknowledgement", host, clientId, height, prefix, proof, portId, channelId, sequence, acknowledgement)
+	err := _Multisigclient.contract.Call(opts, &out, "verifyPacketAcknowledgement", host, clientId, height, arg3, arg4, prefix, proof, portId, channelId, sequence, acknowledgement)
 
 	if err != nil {
 		return *new(bool), err
@@ -727,26 +704,26 @@ func (_Multisigclient *MultisigclientCaller) VerifyPacketAcknowledgement(opts *b
 
 }
 
-// VerifyPacketAcknowledgement is a free data retrieval call binding the contract method 0x63c0d662.
+// VerifyPacketAcknowledgement is a free data retrieval call binding the contract method 0x54596a36.
 //
-// Solidity: function verifyPacketAcknowledgement(address host, string clientId, uint64 height, bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes acknowledgement) view returns(bool)
-func (_Multisigclient *MultisigclientSession) VerifyPacketAcknowledgement(host common.Address, clientId string, height uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, acknowledgement []byte) (bool, error) {
-	return _Multisigclient.Contract.VerifyPacketAcknowledgement(&_Multisigclient.CallOpts, host, clientId, height, prefix, proof, portId, channelId, sequence, acknowledgement)
+// Solidity: function verifyPacketAcknowledgement(address host, string clientId, (uint64,uint64) height, uint64 , uint64 , bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes acknowledgement) view returns(bool)
+func (_Multisigclient *MultisigclientSession) VerifyPacketAcknowledgement(host common.Address, clientId string, height HeightData, arg3 uint64, arg4 uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, acknowledgement []byte) (bool, error) {
+	return _Multisigclient.Contract.VerifyPacketAcknowledgement(&_Multisigclient.CallOpts, host, clientId, height, arg3, arg4, prefix, proof, portId, channelId, sequence, acknowledgement)
 }
 
-// VerifyPacketAcknowledgement is a free data retrieval call binding the contract method 0x63c0d662.
+// VerifyPacketAcknowledgement is a free data retrieval call binding the contract method 0x54596a36.
 //
-// Solidity: function verifyPacketAcknowledgement(address host, string clientId, uint64 height, bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes acknowledgement) view returns(bool)
-func (_Multisigclient *MultisigclientCallerSession) VerifyPacketAcknowledgement(host common.Address, clientId string, height uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, acknowledgement []byte) (bool, error) {
-	return _Multisigclient.Contract.VerifyPacketAcknowledgement(&_Multisigclient.CallOpts, host, clientId, height, prefix, proof, portId, channelId, sequence, acknowledgement)
+// Solidity: function verifyPacketAcknowledgement(address host, string clientId, (uint64,uint64) height, uint64 , uint64 , bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes acknowledgement) view returns(bool)
+func (_Multisigclient *MultisigclientCallerSession) VerifyPacketAcknowledgement(host common.Address, clientId string, height HeightData, arg3 uint64, arg4 uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, acknowledgement []byte) (bool, error) {
+	return _Multisigclient.Contract.VerifyPacketAcknowledgement(&_Multisigclient.CallOpts, host, clientId, height, arg3, arg4, prefix, proof, portId, channelId, sequence, acknowledgement)
 }
 
-// VerifyPacketCommitment is a free data retrieval call binding the contract method 0x08795a2d.
+// VerifyPacketCommitment is a free data retrieval call binding the contract method 0xa0aaade7.
 //
-// Solidity: function verifyPacketCommitment(address host, string clientId, uint64 height, bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes32 commitmentBytes) view returns(bool)
-func (_Multisigclient *MultisigclientCaller) VerifyPacketCommitment(opts *bind.CallOpts, host common.Address, clientId string, height uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, commitmentBytes [32]byte) (bool, error) {
+// Solidity: function verifyPacketCommitment(address host, string clientId, (uint64,uint64) height, uint64 , uint64 , bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes32 commitmentBytes) view returns(bool)
+func (_Multisigclient *MultisigclientCaller) VerifyPacketCommitment(opts *bind.CallOpts, host common.Address, clientId string, height HeightData, arg3 uint64, arg4 uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, commitmentBytes [32]byte) (bool, error) {
 	var out []interface{}
-	err := _Multisigclient.contract.Call(opts, &out, "verifyPacketCommitment", host, clientId, height, prefix, proof, portId, channelId, sequence, commitmentBytes)
+	err := _Multisigclient.contract.Call(opts, &out, "verifyPacketCommitment", host, clientId, height, arg3, arg4, prefix, proof, portId, channelId, sequence, commitmentBytes)
 
 	if err != nil {
 		return *new(bool), err
@@ -758,18 +735,18 @@ func (_Multisigclient *MultisigclientCaller) VerifyPacketCommitment(opts *bind.C
 
 }
 
-// VerifyPacketCommitment is a free data retrieval call binding the contract method 0x08795a2d.
+// VerifyPacketCommitment is a free data retrieval call binding the contract method 0xa0aaade7.
 //
-// Solidity: function verifyPacketCommitment(address host, string clientId, uint64 height, bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes32 commitmentBytes) view returns(bool)
-func (_Multisigclient *MultisigclientSession) VerifyPacketCommitment(host common.Address, clientId string, height uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, commitmentBytes [32]byte) (bool, error) {
-	return _Multisigclient.Contract.VerifyPacketCommitment(&_Multisigclient.CallOpts, host, clientId, height, prefix, proof, portId, channelId, sequence, commitmentBytes)
+// Solidity: function verifyPacketCommitment(address host, string clientId, (uint64,uint64) height, uint64 , uint64 , bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes32 commitmentBytes) view returns(bool)
+func (_Multisigclient *MultisigclientSession) VerifyPacketCommitment(host common.Address, clientId string, height HeightData, arg3 uint64, arg4 uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, commitmentBytes [32]byte) (bool, error) {
+	return _Multisigclient.Contract.VerifyPacketCommitment(&_Multisigclient.CallOpts, host, clientId, height, arg3, arg4, prefix, proof, portId, channelId, sequence, commitmentBytes)
 }
 
-// VerifyPacketCommitment is a free data retrieval call binding the contract method 0x08795a2d.
+// VerifyPacketCommitment is a free data retrieval call binding the contract method 0xa0aaade7.
 //
-// Solidity: function verifyPacketCommitment(address host, string clientId, uint64 height, bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes32 commitmentBytes) view returns(bool)
-func (_Multisigclient *MultisigclientCallerSession) VerifyPacketCommitment(host common.Address, clientId string, height uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, commitmentBytes [32]byte) (bool, error) {
-	return _Multisigclient.Contract.VerifyPacketCommitment(&_Multisigclient.CallOpts, host, clientId, height, prefix, proof, portId, channelId, sequence, commitmentBytes)
+// Solidity: function verifyPacketCommitment(address host, string clientId, (uint64,uint64) height, uint64 , uint64 , bytes prefix, bytes proof, string portId, string channelId, uint64 sequence, bytes32 commitmentBytes) view returns(bool)
+func (_Multisigclient *MultisigclientCallerSession) VerifyPacketCommitment(host common.Address, clientId string, height HeightData, arg3 uint64, arg4 uint64, prefix []byte, proof []byte, portId string, channelId string, sequence uint64, commitmentBytes [32]byte) (bool, error) {
+	return _Multisigclient.Contract.VerifyPacketCommitment(&_Multisigclient.CallOpts, host, clientId, height, arg3, arg4, prefix, proof, portId, channelId, sequence, commitmentBytes)
 }
 
 // VerifySignature is a free data retrieval call binding the contract method 0xe332d75c.

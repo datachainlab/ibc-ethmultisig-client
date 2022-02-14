@@ -1,7 +1,8 @@
-pragma solidity ^0.6.8;
-pragma experimental ABIEncoderV2;
+// SPDX-License-Identifier: Apache-2.0
+pragma solidity ^0.8.9;
 
 import {IClient} from "@hyperledger-labs/yui-ibc-solidity/contracts/core/IClient.sol";
+import "@hyperledger-labs/yui-ibc-solidity/contracts/core/IBCHeight.sol";
 import {IBCHost} from "@hyperledger-labs/yui-ibc-solidity/contracts/core/IBCHost.sol";
 import {IBCIdentifier} from "@hyperledger-labs/yui-ibc-solidity/contracts/core/IBCIdentifier.sol";
 import {GoogleProtobufAny as Any} from "@hyperledger-labs/yui-ibc-solidity/contracts/core/types/GoogleProtobufAny.sol";
@@ -13,13 +14,13 @@ import {
     Header,
     MultiSignature,
     SignBytes,
-    StateData,
-    Height
+    StateData
 } from "../../types/ethmultisig.sol";
 
 // MultisigClient is a dialect of https://github.com/datachainlab/ibc-multisig-client
 contract MultisigClient is IClient {
     using Bytes for bytes;
+    using IBCHeight for Height.Data;
 
     struct protoTypes {
         bytes32 clientState;
@@ -29,7 +30,7 @@ contract MultisigClient is IClient {
 
     protoTypes pts;
 
-    constructor() public {
+    constructor() {
         // TODO The typeUrl should be defined in types/ethmultisig.sol
         // The schema of typeUrl follows cosmos/cosmos-sdk/codec/types/any.go
         pts = protoTypes({
@@ -39,7 +40,7 @@ contract MultisigClient is IClient {
         });
     }
 
-    function getConsensusHeight(uint64 height) internal pure returns (Height.Data memory) {
+    function getConsensusHeight(Height.Data memory) internal pure returns (Height.Data memory) {
       return Height.Data({revision_number: 0, revision_height: 1});
     }
 
@@ -49,7 +50,7 @@ contract MultisigClient is IClient {
     function getTimestampAtHeight(
         IBCHost host,
         string memory clientId,
-        uint64 height
+        Height.Data memory height
     ) public override view returns (uint64, bool) {
         (ConsensusState.Data memory consensusState, bool found) = getConsensusState(host, clientId, getConsensusHeight(height));
         if (!found) {
@@ -61,23 +62,23 @@ contract MultisigClient is IClient {
     function getLatestHeight(
         IBCHost host,
         string memory clientId
-    ) public override view returns (uint64, bool) {
+    ) public override view returns (Height.Data memory, bool) {
         (ClientState.Data memory clientState, bool found) = getClientState(host, clientId);
         if (!found) {
-            return (0, false);
+            return (Height.Data(0, 0), false);
         }
-        return (clientState.latest_height.revision_height, true);
+        return (clientState.latest_height, true);
     }
 
     /**
      * @dev checkHeaderAndUpdateState checks if the provided header is valid
      */
     function checkHeaderAndUpdateState(
-        IBCHost host,
-        string memory clientId,
-        bytes memory clientStateBytes,
-        bytes memory headerBytes
-    ) public virtual override view returns (bytes memory newClientStateBytes, bytes memory newConsensusStateBytes, uint64 height) {
+        IBCHost,
+        string memory,
+        bytes memory,
+        bytes memory
+    ) public virtual override view returns (bytes memory, bytes memory, Height.Data memory) {
         // TODO blocked by https://github.com/hyperledger-labs/yui-ibc-solidity/issues/50
         revert("UpdateClient is not supported");
     }
@@ -97,7 +98,7 @@ contract MultisigClient is IClient {
     function verifyClientState(
         IBCHost host,
         string memory clientId,
-        uint64 height,
+        Height.Data calldata height,
         bytes memory prefix,
         string memory counterpartyClientIdentifier,
         bytes memory proof,
@@ -117,9 +118,9 @@ contract MultisigClient is IClient {
     function verifyClientConsensusState(
         IBCHost host,
         string memory clientId,
-        uint64 height,
+        Height.Data calldata height,
         string memory counterpartyClientIdentifier,
-        uint64 consensusHeight,
+        Height.Data calldata consensusHeight,
         bytes memory prefix,
         bytes memory proof,
         bytes memory consensusStateBytes // serialized with pb
@@ -138,7 +139,7 @@ contract MultisigClient is IClient {
     function verifyConnectionState(
         IBCHost host,
         string memory clientId,
-        uint64 height,
+        Height.Data calldata height,
         bytes memory prefix,
         bytes memory proof,
         string memory connectionId,
@@ -158,7 +159,7 @@ contract MultisigClient is IClient {
     function verifyChannelState(
         IBCHost host,
         string memory clientId,
-        uint64 height,
+        Height.Data calldata height,
         bytes memory prefix,
         bytes memory proof,
         string memory portId,
@@ -180,7 +181,9 @@ contract MultisigClient is IClient {
     function verifyPacketCommitment(
         IBCHost host,
         string memory clientId,
-        uint64 height,
+        Height.Data calldata height,
+        uint64,
+        uint64,
         bytes memory prefix,
         bytes memory proof,
         string memory portId,
@@ -205,7 +208,9 @@ contract MultisigClient is IClient {
     function verifyPacketAcknowledgement(
         IBCHost host,
         string memory clientId,
-        uint64 height,
+        Height.Data calldata height,
+        uint64,
+        uint64,
         bytes memory prefix,
         bytes memory proof,
         string memory portId,
@@ -238,7 +243,7 @@ contract MultisigClient is IClient {
 
     function getConsensusState(IBCHost host, string memory clientId, Height.Data memory height) public virtual view returns (ConsensusState.Data memory consensusState, bool found) {
       bytes memory consensusStateBytes;
-      (consensusStateBytes, found) = host.getConsensusState(clientId, height.revision_height);
+      (consensusStateBytes, found) = host.getConsensusState(clientId, height);
       if (!found) {
         return (consensusState, false);
       }
@@ -252,7 +257,7 @@ contract MultisigClient is IClient {
     }
 
     function makeClientStateSignBytes(
-        uint64 height,
+        Height.Data memory height,
         uint64 timestamp,
         string memory diversifier,
         string memory clientID,
@@ -261,7 +266,7 @@ contract MultisigClient is IClient {
     ) public pure returns (bytes memory) {
       return SignBytes.encode(
         SignBytes.Data({
-          height: Height.Data({revision_number: 0, revision_height: height}),
+          height: height,
           timestamp: timestamp,
           diversifier: diversifier,
           data_type: SignBytes.DataType.DATA_TYPE_CLIENT_STATE,
@@ -270,25 +275,24 @@ contract MultisigClient is IClient {
               {
                 path: abi.encodePacked(prefix, IBCIdentifier.clientCommitmentKey(clientID)),
                 value: clientState
-              }
+              })
             )
-          )
         })
       );
     }
 
     function makeConsensusStateSignBytes(
-        uint64 height,
+        Height.Data memory height,
         uint64 timestamp,
         string memory diversifier,
         string memory clientID,
-        uint64 consensusHeight,
+        Height.Data memory consensusHeight,
         bytes memory consensusState,
         bytes memory prefix
     ) public pure returns (bytes memory) {
         return SignBytes.encode(
             SignBytes.Data({
-                height: Height.Data({revision_number: 0, revision_height: height}),
+                height: height,
                 timestamp: timestamp,
                 diversifier: diversifier,
                 data_type: SignBytes.DataType.DATA_TYPE_CONSENSUS_STATE,
@@ -303,7 +307,7 @@ contract MultisigClient is IClient {
     }
 
     function makeConnectionStateSignBytes(
-        uint64 height,
+        Height.Data memory height,
         uint64 timestamp,
         string memory diversifier,
         string memory connectionID,
@@ -312,7 +316,7 @@ contract MultisigClient is IClient {
     ) public pure returns (bytes memory) {
         return SignBytes.encode(
             SignBytes.Data({
-                height: Height.Data({revision_number: 0, revision_height: height}),
+                height: height,
                 timestamp: timestamp,
                 diversifier: diversifier,
                 data_type: SignBytes.DataType.DATA_TYPE_CONNECTION_STATE,
@@ -327,7 +331,7 @@ contract MultisigClient is IClient {
     }
 
     function makeChannelStateSignBytes(
-        uint64 height,
+        Height.Data memory height,
         uint64 timestamp,
         string memory diversifier,
         string memory portID,
@@ -337,7 +341,7 @@ contract MultisigClient is IClient {
     ) public pure returns (bytes memory) {
         return SignBytes.encode(
             SignBytes.Data({
-                height: Height.Data({revision_number: 0, revision_height: height}),
+                height: height,
                 timestamp: timestamp,
                 diversifier: diversifier,
                 data_type: SignBytes.DataType.DATA_TYPE_CHANNEL_STATE,
@@ -352,7 +356,7 @@ contract MultisigClient is IClient {
     }
 
     function makePacketSignBytes(
-        uint64 height,
+        Height.Data memory height,
         uint64 timestamp,
         string memory diversifier,
         bytes32 path,
@@ -361,7 +365,7 @@ contract MultisigClient is IClient {
     ) public pure returns (bytes memory) {
         return SignBytes.encode(
             SignBytes.Data({
-                height: Height.Data({revision_number: 0, revision_height: height}),
+                height: height,
                 timestamp: timestamp,
                 diversifier: diversifier,
                 data_type: SignBytes.DataType.DATA_TYPE_PACKET_COMMITMENT,
@@ -376,7 +380,7 @@ contract MultisigClient is IClient {
     }
 
     function makePacketAcknowledgementSignBytes(
-        uint64 height,
+        Height.Data memory height,
         uint64 timestamp,
         string memory diversifier,
         bytes32 path,
@@ -385,7 +389,7 @@ contract MultisigClient is IClient {
     ) public pure returns (bytes memory) {
         return SignBytes.encode(
             SignBytes.Data({
-                height: Height.Data({revision_number: 0, revision_height: height}),
+                height: height,
                 timestamp: timestamp,
                 diversifier: diversifier,
                 data_type: SignBytes.DataType.DATA_TYPE_PACKET_ACKNOWLEDGEMENT,

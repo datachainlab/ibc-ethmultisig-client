@@ -1,13 +1,14 @@
 package types
 
 import (
-	fmt "fmt"
+	"fmt"
 
 	"github.com/cosmos/cosmos-sdk/codec"
 	clienttypes "github.com/cosmos/ibc-go/modules/core/02-client/types"
 	"github.com/cosmos/ibc-go/modules/core/exported"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/crypto"
+	"github.com/hyperledger-labs/yui-ibc-solidity/pkg/ibc/client"
 )
 
 func VerifySignature(addresses []common.Address, multiSig *MultiSignature, signBytes []byte) error {
@@ -53,7 +54,7 @@ func ClientStateSignBytes(
 		return nil, err
 	}
 	signBytes := &SignBytes{
-		Height:      Height(height),
+		Height:      client.Height(height),
 		Timestamp:   timestamp,
 		Diversifier: diversifier,
 		DataType:    CLIENT,
@@ -84,7 +85,7 @@ func ConsensusStateSignBytes(
 		return nil, err
 	}
 	signBytes := &SignBytes{
-		Height:      Height(height),
+		Height:      client.Height(height),
 		Timestamp:   timestamp,
 		Diversifier: diversifier,
 		DataType:    CONSENSUS,

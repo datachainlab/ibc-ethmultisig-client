@@ -101,7 +101,7 @@ func (cs ClientState) VerifyClientConsensusState(store sdk.KVStore, cdc codec.Bi
 	if err != nil {
 		return err
 	}
-	path, err := ConsensusCommitmentKey(prefix.Bytes(), counterpartyClientIdentifier, consensusHeight.GetRevisionHeight())
+	path, err := ConsensusCommitmentKey(prefix.Bytes(), counterpartyClientIdentifier, consensusHeight)
 	if err != nil {
 		return err
 	}
