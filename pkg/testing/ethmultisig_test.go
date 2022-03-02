@@ -15,11 +15,14 @@ import (
 	"github.com/cosmos/ibc-go/modules/core/23-commitment/types"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/gogo/protobuf/proto"
+	"github.com/hyperledger-labs/yui-ibc-solidity/pkg/contract/ibchost"
+	"github.com/hyperledger-labs/yui-ibc-solidity/pkg/ibc/client"
 	"github.com/stretchr/testify/suite"
 
 	ethmultisigtypes "github.com/datachainlab/ibc-ethmultisig-client/modules/light-clients/xx-ethmultisig/types"
-	ethmultisig "github.com/datachainlab/ibc-ethmultisig-client/modules/relay/ethmultisig"
+	"github.com/datachainlab/ibc-ethmultisig-client/modules/relay/ethmultisig"
 	"github.com/datachainlab/ibc-ethmultisig-client/pkg/consts"
+	"github.com/datachainlab/ibc-ethmultisig-client/pkg/contract/multisigclient"
 )
 
 const testMnemonicPhrase = "math razor capable expose worth grape metal sunset metal sudden usage scheme"
@@ -58,13 +61,17 @@ func (suite *ETHMultisigTestSuite) TestMultisig() {
 	)
 	anyConsensusStateBytes, err := suite.cdc.MarshalInterface(consensusState)
 	suite.Require().NoError(err)
-	suite.chain.TxSyncIfNoError(ctx)(
+	err = suite.chain.TxSyncIfNoError(ctx)(
 		suite.chain.ibcHost.SetConsensusState(
 			suite.chain.TxOpts(ctx, 0),
 			clientID,
-			1,
+			ibchost.HeightData{
+				RevisionNumber: 0,
+				RevisionHeight: 1,
+			},
 			anyConsensusStateBytes,
 		))
+	suite.Require().NoError(err)
 
 	// VerifyClientState
 	{
@@ -78,13 +85,17 @@ func (suite *ETHMultisigTestSuite) TestMultisig() {
 		ok, err := suite.chain.multisigClient.VerifyClientState(
 			suite.chain.CallOpts(ctx, 0),
 			suite.chain.ContractConfig.GetIBCHostAddress(),
-			clientID, 1, prefix, counterpartyClientID, proofBytes, anyClientStateBytes,
+			clientID,
+			multisigclient.HeightData{
+				RevisionNumber: 0,
+				RevisionHeight: 1,
+			}, prefix, counterpartyClientID, proofBytes, anyClientStateBytes,
 		)
 		suite.Require().NoError(err)
 		suite.Require().True(ok)
 	}
 
-	// VerifyClientConsensusState
+	// VerifyClientConsensusState consensusHeight.revisionNumber=0
 	{
 		targetConsensusState := makeMultisigConsensusState(nil, "tester2", uint64(time.Now().UnixNano()))
 		consensusHeight := clienttypes.NewHeight(0, 100)
@@ -97,7 +108,46 @@ func (suite *ETHMultisigTestSuite) TestMultisig() {
 		ok, err := suite.chain.multisigClient.VerifyClientConsensusState(
 			suite.chain.CallOpts(ctx, 0),
 			suite.chain.ContractConfig.GetIBCHostAddress(),
-			clientID, 1, counterpartyClientID, consensusHeight.RevisionHeight, prefix, proofBytes, anyConsensusStateBytes,
+			clientID,
+			multisigclient.HeightData{
+				RevisionNumber: 0,
+				RevisionHeight: 1,
+			},
+			counterpartyClientID,
+			multisigclient.HeightData{
+				RevisionNumber: consensusHeight.RevisionNumber,
+				RevisionHeight: consensusHeight.RevisionHeight,
+			},
+			prefix, proofBytes, anyConsensusStateBytes,
+		)
+		suite.Require().NoError(err)
+		suite.Require().True(ok)
+	}
+
+	// VerifyClientConsensusState consensusHeight.revisionNumber=1
+	{
+		targetConsensusState := makeMultisigConsensusState(nil, "tester2", uint64(time.Now().UnixNano()))
+		consensusHeight := clienttypes.NewHeight(1, 100)
+		proofConsensus, _, err := prover.SignConsensusState(proofHeight, counterpartyClientID, consensusHeight, targetConsensusState)
+		suite.Require().NoError(err)
+		anyConsensusStateBytes, err := suite.cdc.MarshalInterface(targetConsensusState)
+		suite.Require().NoError(err)
+		proofBytes, err := proto.Marshal(proofConsensus)
+		suite.Require().NoError(err)
+		ok, err := suite.chain.multisigClient.VerifyClientConsensusState(
+			suite.chain.CallOpts(ctx, 0),
+			suite.chain.ContractConfig.GetIBCHostAddress(),
+			clientID,
+			multisigclient.HeightData{
+				RevisionNumber: 0,
+				RevisionHeight: 1,
+			},
+			counterpartyClientID,
+			multisigclient.HeightData{
+				RevisionNumber: consensusHeight.RevisionNumber,
+				RevisionHeight: consensusHeight.RevisionHeight,
+			},
+			prefix, proofBytes, anyConsensusStateBytes,
 		)
 		suite.Require().NoError(err)
 		suite.Require().True(ok)
@@ -116,7 +166,12 @@ func (suite *ETHMultisigTestSuite) TestMultisig() {
 		ok, err := suite.chain.multisigClient.VerifyConnectionState(
 			suite.chain.CallOpts(ctx, 0),
 			suite.chain.ContractConfig.GetIBCHostAddress(),
-			clientID, 1, prefix, proofBytes, connectionID, connectionBytes,
+			clientID,
+			multisigclient.HeightData{
+				RevisionNumber: 0,
+				RevisionHeight: 1,
+			},
+			prefix, proofBytes, connectionID, connectionBytes,
 		)
 		suite.Require().NoError(err)
 		suite.Require().True(ok)
@@ -136,7 +191,12 @@ func (suite *ETHMultisigTestSuite) TestMultisig() {
 		ok, err := suite.chain.multisigClient.VerifyChannelState(
 			suite.chain.CallOpts(ctx, 0),
 			suite.chain.ContractConfig.GetIBCHostAddress(),
-			clientID, 1, prefix, proofBytes, portID, channelID, channelBytes,
+			clientID,
+			multisigclient.HeightData{
+				RevisionNumber: 0,
+				RevisionHeight: 1,
+			},
+			prefix, proofBytes, portID, channelID, channelBytes,
 		)
 		suite.Require().NoError(err)
 		suite.Require().True(ok)
@@ -152,7 +212,13 @@ func (suite *ETHMultisigTestSuite) TestMultisig() {
 		ok, err := suite.chain.multisigClient.VerifyPacketCommitment(
 			suite.chain.CallOpts(ctx, 0),
 			suite.chain.ContractConfig.GetIBCHostAddress(),
-			clientID, 1, prefix, proofBytes, portID, channelID, 1, commitment,
+			clientID,
+			multisigclient.HeightData{
+				RevisionNumber: 0,
+				RevisionHeight: 1,
+			},
+			0, 0,
+			prefix, proofBytes, portID, channelID, 1, commitment,
 		)
 		suite.Require().NoError(err)
 		suite.Require().True(ok)
@@ -169,7 +235,13 @@ func (suite *ETHMultisigTestSuite) TestMultisig() {
 		ok, err := suite.chain.multisigClient.VerifyPacketAcknowledgement(
 			suite.chain.CallOpts(ctx, 0),
 			suite.chain.ContractConfig.GetIBCHostAddress(),
-			clientID, 1, prefix, proofBytes, portID, channelID, 1, acknowledgement,
+			clientID,
+			multisigclient.HeightData{
+				RevisionNumber: 0,
+				RevisionHeight: 1,
+			},
+			0, 0,
+			prefix, proofBytes, portID, channelID, 1, acknowledgement,
 		)
 		suite.Require().NoError(err)
 		suite.Require().True(ok)
@@ -197,7 +269,7 @@ func (suite *ETHMultisigTestSuite) TestMultisigSign() {
 
 func makeMultisigClientState(latestHeight uint64) *ethmultisigtypes.ClientState {
 	return &ethmultisigtypes.ClientState{
-		LatestHeight: ethmultisigtypes.Height{
+		LatestHeight: client.Height{
 			RevisionNumber: 0,
 			RevisionHeight: latestHeight,
 		},

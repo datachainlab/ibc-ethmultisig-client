@@ -9,6 +9,7 @@ import (
 	"reflect"
 	"strings"
 
+	ibcexported "github.com/cosmos/ibc-go/modules/core/exported"
 	"github.com/ethereum/go-ethereum/common"
 	"github.com/ethereum/go-ethereum/common/math"
 	"github.com/ethereum/go-ethereum/crypto"
@@ -35,8 +36,8 @@ func ClientCommitmentKey(prefix []byte, clientId string) ([]byte, error) {
 	return append(prefix, key...), nil
 }
 
-func ConsensusCommitmentKey(prefix []byte, clientId string, height uint64) ([]byte, error) {
-	key, err := keccak256AbiEncodePacked(consensusStatePrefix, clientId, "/", height)
+func ConsensusCommitmentKey(prefix []byte, clientId string, height ibcexported.Height) ([]byte, error) {
+	key, err := keccak256AbiEncodePacked(consensusStatePrefix, clientId, "/", heightToBytes(height))
 	if err != nil {
 		return nil, err
 	}
@@ -127,4 +128,11 @@ func evenLengthHex(v string) string {
 		v = "0" + v
 	}
 	return v
+}
+
+func heightToBytes(height ibcexported.Height) []byte {
+	var bz [16]byte
+	binary.BigEndian.PutUint64(bz[:8], height.GetRevisionNumber())
+	binary.BigEndian.PutUint64(bz[8:], height.GetRevisionHeight())
+	return bz[:]
 }

@@ -2,7 +2,11 @@ syntax = "proto3";
 
 option go_package = "github.com/datachainlab/ibc-ethmultisig-client/modules/light-clients/xx-ethmultisig/types";
 
+import "solidity-protobuf-extensions.proto";
 import "gogoproto/gogo.proto";
+import "yui-ibc-solidity/pkg/ibc/client/Client.proto";
+
+option (.solidity.file_options) = { dirpath: "contracts/core/types" };
 
 message ClientState {
   option (gogoproto.goproto_getters) = false;
@@ -35,13 +39,6 @@ message Header {
   MultiSignature      signature       = 3;
   repeated bytes      new_addresses   = 4 [(gogoproto.moretags) = "yaml:\"new_addresses\""];
   string              new_diversifier = 5 [(gogoproto.moretags) = "yaml:\"new_diversifier\""];
-}
-
-message Height {
-  // the revision that the client is currently on
-  uint64 revision_number = 1;
-  // the height within the given revision
-  uint64 revision_height = 2;
 }
 
 message MultiSignature {

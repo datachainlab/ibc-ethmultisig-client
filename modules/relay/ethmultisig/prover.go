@@ -11,11 +11,13 @@ import (
 	conntypes "github.com/cosmos/ibc-go/modules/core/03-connection/types"
 	chantypes "github.com/cosmos/ibc-go/modules/core/04-channel/types"
 	ibcexported "github.com/cosmos/ibc-go/modules/core/exported"
+	"github.com/hyperledger-labs/yui-ibc-solidity/pkg/ibc/client"
+
+	"github.com/gogo/protobuf/proto"
+	"github.com/hyperledger-labs/yui-relayer/core"
 
 	ethmultisigclient "github.com/datachainlab/ibc-ethmultisig-client/modules/light-clients/xx-ethmultisig/types"
 	"github.com/datachainlab/ibc-ethmultisig-client/modules/relay/ethmultisig/wallet"
-	"github.com/gogo/protobuf/proto"
-	"github.com/hyperledger-labs/yui-relayer/core"
 )
 
 var _ core.ProverConfigI = (*ProverConfig)(nil)
@@ -56,7 +58,7 @@ func (pr *Prover) GetChainID() string {
 
 // QueryLatestHeader returns the latest header from the chain
 func (pr *Prover) QueryLatestHeader() (out core.HeaderI, err error) {
-	return &ethmultisigclient.Header{Height: ethmultisigclient.Height{RevisionNumber: 0, RevisionHeight: 1}}, nil
+	return &ethmultisigclient.Header{Height: client.Height{RevisionNumber: 0, RevisionHeight: 1}}, nil
 }
 
 // GetLatestLightHeight returns the latest height on the light client
@@ -71,7 +73,7 @@ func (pr *Prover) CreateMsgCreateClient(clientID string, dstHeader core.HeaderI,
 		addresses = append(addresses, addr.Bytes())
 	}
 	clientState := &ethmultisigclient.ClientState{
-		LatestHeight: ethmultisigclient.Height{RevisionNumber: 0, RevisionHeight: 1},
+		LatestHeight: client.Height{RevisionNumber: 0, RevisionHeight: 1},
 	}
 	consensusState := &ethmultisigclient.ConsensusState{
 		Addresses:   addresses,
